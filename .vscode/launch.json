@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-PgToolsApplication<PGTools>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.pg.PGTools.PgToolsApplication",
+            "projectName": "PGTools",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
