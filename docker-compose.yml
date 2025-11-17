@@ -1,0 +1,48 @@
+
+#docker compose.yml file
+version: "3.8"
+
+services:
+  mysql:
+    container_name: mysql
+    image: mysql:latest
+    ports:
+      - 3306:3306  # Added space after -
+    environment:
+      MYSQL_ROOT_PASSWORD: pgtools@2025 # Added space after :
+      MYSQL_DATABASE: PgtoolsDB         # Added space after :
+    networks:
+      - pgtools-network # Indented and added space
+    volumes:
+      - mysql-data:/var/lib/mysql # Indented and added space
+    healthcheck:
+      test: ["CMD","mysqladmin","ping","-h","localhost","-upgtools","-ppgtools@2025"]
+      interval: 10s # Indented correctly
+      timeout: 5s   # Indented correctly
+      retries: 5    # Note: Retries usually takes an integer (5) not a duration (5s)
+      start_period: 50s # Indented correctly
+
+#-----------------------------------------------------------------------
+  pgtoolapp:
+    container_name: pgtoolapp
+    image: pratikchaudhari555/springboot-pgtool-app:latest # Fixed indentation
+    ports:
+      - 8080:8080 # Added space after -
+    environment:
+      SPRING_DATASOURCE_USERNAME: pgtools # Indented these variables
+      SPRING_DATASOURCE_URL: "jdbc:mysql://13.49.232.110:3306/pgtoolsdata?allowPublicKeyRetrieval=true&useSSL=false"
+      SPRING_DATASOURCE_PASSWORD: pgtools@2025 # Changed SPRING_PASSWORD to correct variable name
+    networks:
+      - pgtools-network # Changed 'network' to 'networks' and indented
+    depends_on:
+      - mysql
+    restart: always # Fixed indentation and added space
+
+# Define the volumes and networks outside of the services block
+volumes:
+  mysql-data:
+
+networks:
+  pgtools-network: # Changed 'pgtoolapp' to the consistent name 'pgtools-network'
+    driver: bridge
+
