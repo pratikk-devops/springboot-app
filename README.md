@@ -1,4 +1,4 @@
-# PGTools - Spring Boot Application
+#- Spring Boot Application
 
 ![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.5.3-brightgreen?logo=spring-boot)
 ![Java](https://img.shields.io/badge/Java-17-red?logo=java)
